@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Alarmy</title>
+	<link rel="shortcut icon" href="#">
+	</head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script type="text/javascript" src="alarmy.js" defer></script>
+<style type="text/css">`
+	.pluss{
+		/*margin-bottom: 10vh;*/
+		/*padding-bottom: 10px;*/
+	}
+	.hms{
+		/*margin-left: 5vh;*/
+		margin-top: 3%;
+		margin-right: 2vh;
+	}
+	.section{
+		padding: 30px;
+		margin-left: 5rem;
+		margin-right: 5rem;
+	}
+	.display{
+		font-weight: bold;
+		font-size: 50px;
+		text-align: center;
+	}
+	.spandisplay{
+		font-weight: bold;
+		font-size: 10px;
+	}
+	.barbox{
+		height: 50vh;
+	}
+	.wholebox{
+		margin-top: 5vh;
+	}
+	.slidecontainer {
+  		width: 100%; /* Width of the outside container */
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;  
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%; 
+  cursor: pointer;
+}
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.beautifyicon{
+	border: 3px solid black;
+	padding-left: 4px;
+    padding-top: 2px;
+	width: 40px;
+	height: 40px;
+	text-align:center;
+	box-shadow: 2px 1px 3px black,2px 1px 8px black inset;
+	transform:scale(1.0);
+}
+.beautifyicon:hover{
+	transform:scale(1.1);
+	background-color: white;
+	color: black;
+}
+.beautifyicon:active{
+	transition: 0.5s;
+	transform:scale(0.6);
+	background-color: black;
+	color: white;
+}
+.set:hover{
+	background-color: #a7a7b3;
+}
+.turnoffbutton:hover{
+	background-color: #626366;
+}
+.body{
+	background-image: linear-gradient(to left, rgb(23 36 163 / 90%), rgb(1 3 8 / 90%));
+}
+.pink{
+	background-color: #dea9df;
+	box-shadow: 2px 3px 5px #000;
+}
+.reddy{
+	background-color: #870a0a;
+	margin-bottom: 5px;
+}
+.oggy{
+	background-color: #ab722b;
+	margin-bottom: 5px;
+	margin-right: 3rem;
+}
+.lightpurple{
+	background-color: #686b96;
+}
+.textcolor{
+	background-color: blue;
+	font-weight: bold;
+	font-size: 20px;
+}
+.trash{
+	padding-top: 2px;
+}
+</style>
+<body class="body">
+	<nav class="navbar nav">
+	  <div class="container-fluid lightgreen">
+	    <h1 class="mx-auto head" style="font-weight: bold;font-size: 4rem;color: #c59eb0">ALARMY</h1>
+	  </div>
+	</nav>
+<audio id="audio">
+	<source src="./alarmSound.mp3" type="audio/mp3">
+</audio>
+
+<div class="container wholebox">
+	<div class="row">
+<!-- 1st col -->
+		<section class="col container section">
+					<div class="box">
+						<div class="row barbox" style="display: flex;">
+						  	<!-- hours  Bar -->
+							<div class="col progress" style="background-color: #262526;width: 100%; height: 100%; align-items: flex-end; ">
+							      <div class="progress-bar progress-bar-striped bg-danger hoursbar" role="progressbar" style="width: 100%;height:50rem;transition: 1s;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+							</div>
+							    <!-- `minutes  Bar -->
+							<div class="col progress" style="background-color: #262526;width: 100%; height: 100%; align-items: flex-end; ">
+							      <div class="progress-bar progress-bar-striped bg-danger minutesbar" role="progressbar" style="width: 100%;height:50rem;transition: 1s;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+							</div>
+							    <!-- Seconds  Bar -->
+							<div class="col progress" style="background-color: #262526;width: 100%; height: 100%; align-items: flex-end; ">
+							      <div class="progress-bar progress-bar-striped bg-danger secondsbar" role="progressbar" style="width: 100%;height:50rem;transition: 1s;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+							</div>
+					  	</div>
+					</div>
+
+			<!-- DISPLAY TIME -->
+			<div class="timer displaytime">
+			  <div class="row" style="height: 5rem">
+				    <div class="col displayhours display lightpurple">
+				    </div>
+				    <div class="col displayminutes display" style="background-color: #e1baf5">
+				    </div>
+				    <div class="col displaysecs display lightpurple">
+				    </div>
+		  	   </div>
+			</div>
+	</section>
+		
+<!-- 2nd col -->
+		<div class="col pink"> 
+			    <h1 class="mx-auto head opacity-25" style="text-align: center;">SET ALARMS HERE</h1>
+			    <i id="pluss" class="fas fa-plus pluss beautifyicon" style="font-size:30px;display: inline-flex; ;"></i>
+
+
+			    <!-- ALARM OFF -->
+		<div id="turnoffalert" class="alert turnoffalert" role="alert" style="display: none;background-color:white"> 
+				  <h4 class="alert-heading">TURN OFF!!</h4>
+				  <hr>
+				  <p id="alertp" class="alertp">Its </p>
+				  <button class="turnoffbutton" id="turnoffbutton">OFF</button>
+		</div>
+
+			    <div id="setalarm">
+			    	<!-- BEUTIFIED ALARM LIST -->
+			    </div>
+
+		    	<div class="input-group takeinput hms" style="display: none;">
+		    		<!-- INPUT ALARM -->
+				  <input type="number" aria-label="First name" id="sethours" class="form-control sethours" value="" placeholder="sethours" style="background-color: #d9d9e0;border:1px solid black ">
+				  <input type="number" aria-label="Last name" id="setminutes" class="form-control setminutes" value="" placeholder="setminutes" style="background-color: #d9d9e0;border:1px solid black ">
+				  <button id="set" class="set">set</button>
+				</div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
